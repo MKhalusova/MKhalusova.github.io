@@ -1,1 +1,1 @@
-[MKhalusova.github.io](MKhalusova.github.io)
+[MKhalusova.github.io](mkhalusova.github.io)
