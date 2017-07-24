@@ -10,21 +10,25 @@
     <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
-        <li><a href="/talks">Talks</a></li>
+        <!--<li><a href="/talks">Talks</a></li>-->
         <li><a href="/blog">Blog</a></li>
     </ul>
 </nav>
+<img src="/images/blueberries.jpg">
 <div class="container">
 
     {{ content }}
 
 </div>
 <footer>
+
     <ul>
-        <li><a href="mailto:kafooster@gmail.com">email</a></li>
-        <li><a href="https://twitter.com/mariaKhalusova">twitter</a></li>
-        <li><a href="https://github.com/MKhalusova">github.com/MKhalusova</a></li>
+        <li><a href="mailto:kafooster@gmail.com"><img src="/images/mail.svg" height="35"></a></li>
+        <li><a href="https://twitter.com/mariaKhalusova"><img src="/images/Twitter_Logo_Blue.svg" height="35"></a></li>
+        <li><a href="https://github.com/MKhalusova"><img src="/images/Octocat.png" height="35"></a></li>
     </ul>
+    <span>&copy; {{ site.time | date: '%Y' }} Maria Khalusova. Powered by <a href="http://jekyllrb.com">Jekyll</a>.</span>
 </footer>
+
 </body>
 </html>
