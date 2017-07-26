@@ -25,6 +25,9 @@ h1 {
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
 }
 
+#post img {
+    max-width: 800px;
+}
 p {
     font-size: 1.2em;
     line-height: 1.2em;
@@ -35,11 +38,24 @@ footer {
     font-size: .8em;
 }
 
-ul.posts {
+#post ul {
     margin: 20px auto 40px;
     font-size: 1.2em;
 }
 
-ul.posts li {
+#post ul li {
     list-style: none;
 }
+
+#post ol {
+    margin: 20px auto 40px;
+    font-size: 1.2em;
+}
+
+#post ol li img {
+    max-width: 600px;
+    display:block;
+    margin-right: auto;
+    padding: 10px;
+}
+
