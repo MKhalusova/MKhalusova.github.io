@@ -36,7 +36,8 @@ shortcut comes quite handy.
 ![Double-Shift](/images/p02-search-everywhere.png)  
 
 I think these are the basic shortcuts that can be helpful to anyone, even those making their first steps. And these can already save you some time. 
-P.S.: Shortcuts depend on your system. I'm using the default OS X keymap. You can see yours in the Preferences.
+
+**P.S.**: Shortcuts depend on your system. I'm using the default OS X keymap. You can see yours in the Preferences.
  
 ![Preferences](/images/p02-keymap.png)
 
