@@ -10,7 +10,7 @@ Given my background in math, this is like finding a postcard from the past in my
 In Python, a list comprehension is another way of iterating through something and building a list. 
 You could go with `for` loop:
 
-```asciidoc
+```python
 L = []
 for x in range(10):
     if x% 2 == 1:
