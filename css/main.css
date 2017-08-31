@@ -24,6 +24,17 @@ h1 {
     color: #333333;
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
 }
+h2 {
+    font-size: 1.5em;
+    color: #333333;
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+}
+
+h3 {
+    font-size: 1.2em;
+    color: #333333;
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+}
 
 #post img {
     max-width: 800px;
