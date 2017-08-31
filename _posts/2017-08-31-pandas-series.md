@@ -11,9 +11,9 @@ Series is a one-dimensional labeled array capable of holding any data type. The 
 This post accumulates some of the things that I've learned about Series that I'd like to keep in one place for myself for a quick future reference. This is merely a basic intro to Series, and there's a lot more to this data structure. 
 
 Before doing anything with Series, we need to import pandas:
-{% highlight python %}
+```python
 import pandas as pd
-{% endhighlight %}
+```
 
 ## Series Basics
 You can create a Series from a list with any data type:
