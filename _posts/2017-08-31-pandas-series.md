@@ -29,6 +29,7 @@ my_fruit_series = pd.Series(fruit)
 dtype: object
 ----------------
 ```
+
 By default, each item received an index label from 0 to N-1, where N is the length of the Series. 
 You can find out the length of the Series by calling `len()` or `size`:
 ```python
