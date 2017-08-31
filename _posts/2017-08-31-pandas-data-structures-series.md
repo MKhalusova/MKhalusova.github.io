@@ -15,7 +15,7 @@ Before doing anything with Series, we need to import pandas:
 import pandas as pd
 ```
 
-<h2> Series Basics</h2>
+## Series Basics
 You can create a Series from a list with any data type:
 ```python
 fruit = ['banana', 'apple', 'orange', 42, ['blueberries','raspberries']]
@@ -205,7 +205,7 @@ dtype: float64
 
 By default `where()` returns a copy and doesn't modify the original data. There is an optional parameter inplace (`inplace=True`) so that the original data can be modified without creating a copy.
 
-<h2> Some Math with Series</h2>
+## Some Math with Series
 Let's take this Series as an example:
 ```python
 s = pd.Series([3,12,1,7,15])
@@ -309,7 +309,7 @@ e
 c
 ----------------
 ```
-<h2> Modifying Data in a Series</h2>
+## Modifying Data in a Series
 Replacing values in a Series with a new value:
 ```python
 s = pd.Series([3,7,12,1,7,15])
@@ -324,8 +324,9 @@ s.replace(7,777)
 dtype: int64
 ----------------
 ```
-<h3> Modifying data with apply()</h3>
-Let's say we have a Series with heights of my imaginary friends in cm: 
+### Modifying data with apply()
+Let's say we have a Series with heights of my imaginary friends in cm:
+ 
 ```python
 s = pd.Series([175,168,154,183], index=['Tim', 'Kate', 'Ann', 'Jon'])
 ----------------
@@ -337,6 +338,7 @@ dtype: int64
 ----------------
 ```
 If I want to convert their height from cm to inches, I can do it with `apply()`:
+
 ```python
 s = pd.Series([175,168,154,183], index=['Tim', 'Kate', 'Ann', 'Jon'])
 s = s.apply(lambda x: x/2.54)
@@ -349,6 +351,7 @@ dtype: float64
 ----------------
 ```
 Or, I can define a function, and pass it:
+
 ```python
 s = pd.Series([175,168,154,183], index=['Tim', 'Kate', 'Ann', 'Jon'])
 def convert_cm_to_inch(x):
@@ -362,6 +365,7 @@ Jon     72.047244
 dtype: float64
 ----------------
 ```
+
 If the function takes more arguments, you can specify them with `args=`
 ```python
 s = pd.Series([175,168,154,183], index=['Tim', 'Kate', 'Ann', 'Jon'])
