@@ -18,7 +18,7 @@ for x in range(10):
 ```
 Or you could do the same with a list comprehension:
 
-```asciidoc
+```python
 L = [x**2 for x in range(10) if x% 2 == 1]
 ```
 
@@ -30,19 +30,19 @@ It's not too hard to transform a `for` loop into a list comprehension either.
 Here's how you generally do it.
 This is your loop:
 
-```asciidoc
+```python
 new_list = []
 for i in what_you_are_iterating_through:
     if condition_based_on_i:
         new_list.append(what_you_add_to_new_list)
 ```
 This is a list comprehension you can transform it to:
-```asciidoc
+```python
 new_list = [what_you_add_to_new_list for i in what_you_are_iterating_through if condition_based_on_i]
 ```
 
 If it gets too long, you can add line breaks for the sake of better readability:
-```asciidoc
+```python
 new_list = [
 	what_you_add_to_new_list 
 	for i in what_you_are_iterating through
