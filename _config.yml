@@ -1,3 +1,4 @@
 name: Maria Khalusova
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
+highlighter: rouge
