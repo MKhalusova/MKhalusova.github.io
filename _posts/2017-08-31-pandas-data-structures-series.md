@@ -15,7 +15,7 @@ Before doing anything with Series, we need to import pandas:
 import pandas as pd
 ```
 
-##Series Basics
+## Series Basics
 You can create a Series from a list with any data type:
 ```python
 fruit = ['banana', 'apple', 'orange', 42, ['blueberries','raspberries']]
@@ -205,7 +205,7 @@ dtype: float64
 
 By default `where()` returns a copy and doesn't modify the original data. There is an optional parameter inplace (`inplace=True`) so that the original data can be modified without creating a copy.
 
-##Some Math with Series
+## Some Math with Series
 Let's take this Series as an example:
 ```python
 s = pd.Series([3,12,1,7,15])
@@ -309,7 +309,7 @@ e
 c
 ----------------
 ```
-##Modifying Data in a Series
+## Modifying Data in a Series
 Replacing values in a Series with a new value:
 ```python
 s = pd.Series([3,7,12,1,7,15])
