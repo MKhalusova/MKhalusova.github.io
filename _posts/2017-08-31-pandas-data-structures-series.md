@@ -324,7 +324,7 @@ s.replace(7,777)
 dtype: int64
 ----------------
 ```
-###Modifying data with apply()
+### Modifying data with apply()
 Let's say we have a Series with heights of my imaginary friends in cm: 
 ```python
 s = pd.Series([175,168,154,183], index=['Tim', 'Kate', 'Ann', 'Jon'])
