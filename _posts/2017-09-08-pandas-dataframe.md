@@ -157,7 +157,9 @@ Let's say we'd like to find out whose movies have brought more gross overall. We
 movies = df[['director_name','gross']]
 
 movies.groupby('director_name').aggregate(sum).sort_values(by="gross", ascending=False).head(10)
-# This line means "Group the rows by director_name. Add up all the values for each director_name, then sort values in column gross in descending order. Show only first 10".
+# This line means "Group the rows by director_name. 
+# Add up all the values for each director_name, 
+# then sort values in column gross in descending order. Show only first 10".
 
 --------------------
                           gross
