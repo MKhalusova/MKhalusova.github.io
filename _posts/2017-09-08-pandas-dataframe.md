@@ -82,7 +82,7 @@ We can start by getting a column by its name, and set a range of indices we want
 df['movie_title'][:3]
 --------------------
 0                                      Avatar 
-1    Pirates of the Caribbean: At World's End 
+1    Pirates of the Caribbean: At Worlds End 
 2                                     Spectre 
 Name: movie_title, dtype: object
 --------------------
@@ -95,7 +95,7 @@ df[['movie_title','director_name']][:3]
 --------------------
                                  movie_title   director_name
 0                                    Avatar    James Cameron
-1  Pirates of the Caribbean: At World's End   Gore Verbinski
+1  Pirates of the Caribbean: At Worlds End   Gore Verbinski
 2                                   Spectre       Sam Mendes
 --------------------
 ```
