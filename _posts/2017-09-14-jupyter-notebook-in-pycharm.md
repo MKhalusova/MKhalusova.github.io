@@ -24,16 +24,16 @@ Add some code in the cell, and click Run (or do it like a pro and use the shortc
 
 ![Run](/images/jup-auth.png)
 
-Oops, what's that? We're not done with the setup. Click Cancel here, and you’ll get the link to authenticate you the first time in the Run tool window:
+Oops, what's that? We're not done with the setup. Click Cancel here, and you’ll get the link in the Run tool window to authenticate you the first time:
 
 ![Run toolwindow](/images/jup-link.png)
 
-Click the link, and you've got your Notebook running. Now you're really all set:
+Click it, and you've got your Notebook running. Now you're really all set:
 
 ![Yay! It's working](/images/jup-running.png)
 
 That's pretty much it. Open your notebook (*.ipynb*), add code in the cells, run them, experiment, plot, have fun! 
-For my example I took some statistical data from [muenchen.de](https://www.opengov-muenchen.de/) about people visiting movies, museums and classical music concerts. And, well, no surprise there, a lot more people go to the movies than to museums :D
+For my example I took some statistical data from [muenchen.de](https://www.opengov-muenchen.de/) about people visiting movies, museums and classical music concerts. And, well, no surprise there, a lot more people go to see movies rather than listen to classical music. :D
 
 ![Not very insightful plot example](/images/jup-plot.png)
 
