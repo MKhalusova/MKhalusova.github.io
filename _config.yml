@@ -1,4 +1,6 @@
 name: Maria Khalusova
+description: Learning, blogging, sharing knowledge
+url: http://mkhalusova.github.io/
 markdown: kramdown
 kramdown:
   input: GFM
