@@ -5,6 +5,9 @@
     <title>{{ page.title }}</title>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link href='http://mkhalusova.github.io/feed.xml' rel='alternate' type='application/atom+xml'>
+    {% if site.google_analytics and jekyll.environment == 'production' %}
+    {% include analytics.html %}
+    {% endif %}
 </head>
 <body>
 <nav>
