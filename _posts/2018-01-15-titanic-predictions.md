@@ -4,7 +4,7 @@ title: "Predicting survival of Titanic passengers"
 date: 2018-01-15
 ---
 
-I've been hesitant to write this blog post. One one hand, I managed to build my first (i.e. not in the context of a course exercise)
+I've been hesitant to write this blog post. On one hand, I managed to build my first (i.e. not in the context of a course exercise)
 neural network that predicts something - in this case, survival or death of Titanic passengers.
 There's also quite involved data cleanup beforehand, which took some time.
 Overall I feel like I have made my first tiny step towards "real" machine learning. It does feel like an achievement - this is huge compared to what I could do just a couple of months ago.
@@ -751,7 +751,7 @@ test_df_copy.to_csv('predictions.csv',index=False)
 
 This implementation gives me maximum of 78.5 % accuracy. There are a lot of missing values in the original data, I make a lot of assumptions too, plus there's an element of luck, of course.
 I've tried different number of layers, different sizes, I've tried optimizations, and various learning rates. I don't think it's realistic to get an estimate higher than 85% without cheating,
-so that's where I was thriving to get. But as of now I'm stuck and I'll leave it as is now, and get back to it some time later with some fresh knowledge :)   
+so that's where I was striving to get. But as of now I'm stuck and I'll leave it as is now, and get back to it some time later with some fresh knowledge :)
 
 
 
