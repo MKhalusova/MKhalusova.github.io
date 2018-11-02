@@ -10,10 +10,10 @@ I love shortcuts. When there's a frequently performed action, there's got to be 
 
 Do you really need all of them? Probably not. I haven't seen yet one person use ALL shortcuts available. 
 That's fine. Depending on what you do and how you do those things, your subset of useful shortcuts can vary. 
-Some of the common routine tasks of a seasoned developer may be rare for someone who’s just learning. Naturally, there's some overlap. 
+Some of the common routine tasks of a seasoned developer may be rare for someone who's just learning. Naturally, there's some overlap.
 For example, shortcuts for editing and search.  
 
-As I’m dabbling with Python, I thought I’d share my personal top 10 of shortcuts that I find can be already helpful to 
+As I'm dabbling with Python, I thought I'd share my personal top 10 of shortcuts that I find can be already helpful to
 someone who's just doing some learning. No advanced stuff.  
 
 1. **Cmd + N**. Create a new file/directory/etc. I tend to create a lot of small code examples to try this and that, so this 

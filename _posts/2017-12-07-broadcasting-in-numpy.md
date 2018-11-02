@@ -113,7 +113,7 @@ If two dimensions are equal, or if one of them equals 1, the comparison continue
 The most typical uses of broadcasting in my experience so far (apart from operations between array and a scalar value) have been operations between a m by n matrix and a 1 by n vector.
 
 In some cases, however, things get a little tricky.
-Let’s say we have a row vector (1,n) and a column vector(n,1) and we want to sum them up, what will NumPy do? Let’s see:
+Let's say we have a row vector (1,n) and a column vector(n,1) and we want to sum them up, what will NumPy do? Let's see:
 
 ```python
 a = np.array([[1],[2],[3]])
@@ -129,7 +129,7 @@ array([[4, 5, 6],
 
 Turns out both array were stretched to 3 x 3 shape and then summation was performed between them resulting in a 3 by 3 array.
 
-So if you want to sum two vectors and get a vector, don’t forget to reshape them.
+So if you want to sum two vectors and get a vector, don't forget to reshape them.
 
 ```python
 a = np.array([[1],[2],[3]]).reshape(3,1)
@@ -143,8 +143,8 @@ array([[4],
 --------------------
 ```
 
-Here’s another example that wasn’t obvious to me.
-Consider the following code. It seems like it should work. Intuitively, `a` is an 2 x 4 array, and `b` looks like it has dimensions 2 by 1. However, it doesn’t and we get a `ValueError`.
+Here's another example that wasn't obvious to me.
+Consider the following code. It seems like it should work. Intuitively, `a` is an 2 x 4 array, and `b` looks like it has dimensions 2 by 1. However, it doesn't and we get a `ValueError`.
 
 ```python
 a = np.random.random((2,4))

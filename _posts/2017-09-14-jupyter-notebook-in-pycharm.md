@@ -4,7 +4,7 @@ title: "Jupyter Notebook in PyCharm"
 date: 2017-09-14
 ---
 
-I find that [Jupiter Notebook](http://jupyter.org/about.html) is a really nice tool for dealing with data, and for learning and exploring the capabilities of various libraries. It makes it easy to quickly experiment with data, see where cleanup is needed, what works and what doesn’t, and to plot the results adjusting on the go. It’s also super-easy to setup Jupyter in PyCharm. 
+I find that [Jupiter Notebook](http://jupyter.org/about.html) is a really nice tool for dealing with data, and for learning and exploring the capabilities of various libraries. It makes it easy to quickly experiment with data, see where cleanup is needed, what works and what doesn't, and to plot the results adjusting on the go. It's also super-easy to setup Jupyter in PyCharm.
 Here's how you do it.
 
 Create a project in PyCharm, and create a VirtualEnv instead of using your local python.  
@@ -24,7 +24,7 @@ Add some code in the cell, and click Run (or do it like a pro and use the shortc
 
 ![Run](/images/jup-auth.png)
 
-Oops, what's that? We're not done with the setup. Click Cancel here, and you’ll get the link in the Run tool window to authenticate you the first time:
+Oops, what's that? We're not done with the setup. Click Cancel here, and you'll get the link in the Run tool window to authenticate you the first time:
 
 ![Run toolwindow](/images/jup-link.png)
 

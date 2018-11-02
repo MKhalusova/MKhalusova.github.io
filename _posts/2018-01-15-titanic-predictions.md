@@ -18,7 +18,7 @@ The data and the problem description are from Kaggle competition: [Titanic: Mach
 
 In this challenge, there are two cvs with passenger data:
 * **training set (train.csv)**: The training set should be used to build a machine learning model.
-                            For the training set, the outcome (also known as the “ground truth”) is provided for each passenger.
+                            For the training set, the outcome (also known as the "ground truth”) is provided for each passenger.
 * **test set (test.csv)**: The test set should be used to see how well the model performs on unseen data. For the test set, the ground truth is not provided.
                          For each passenger in the test set, the model needs to predict whether or not they survived the sinking of the Titanic.
 
