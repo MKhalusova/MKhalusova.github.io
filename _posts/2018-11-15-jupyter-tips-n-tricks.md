@@ -17,11 +17,11 @@ little easier when working with notebooks.
 Being very flexible, Jupyter notebooks let you run your cells, edit them, remove them, add new ones, 
 and do all those things out of order. This freedom comes with a price, because the order in which 
 you execute your cells actually matters when some cells rely on the execution of the others. 
-And this is the case most of the time. Rare cells exist completely independent on the others, 
+And this is the case most of the time. Rare cells exist completely independent of the others, 
 at least in my experience.  
 Executing cells out of order can produce confusing results - check out some examples 
 [Joel Grus](https://twitter.com/joelgrus) gives in his talk ["I don't like Notebooks"](https://youtu.be/7jiPeIFXb6U). 
-What's the cure? Well, there's no one-suits-all. You can, like Joel Grus, not use notebooks. 
+What's the cure? Well, there's no "one-suits-all". You can, like Joel Grus, not use notebooks. 
 You can use `%history` magic to examine past input and its order. Or you can re-run all cells from 
 top to bottom to restore the logical flow of what you were trying to do. One important thing though is 
 to always be aware of the hidden state. 
@@ -38,7 +38,7 @@ to collapse it.
 
 Please tell me you're not using your mouse or trackpad to run cells:) That'd be such a waste of time! 
 Most of the time I hit **Shift + Enter** to run a cell, but at some point I've discovered one more way 
-to run a cell, which occasionally is more convenient. **Alt+Enter** runs current cell and creates a 
+to run a cell, which occasionally is more convenient: **Alt+Enter** runs current cell and creates a 
 new one below it.
 
 ### Number 3: Command mode vs Edit mode
@@ -71,7 +71,7 @@ to get an extended version of the documentation.
 
 If you want to see a list of all available attributes of an object, you can type the name of the 
 object, then a period (.) and hit **Tab**. That's nice, but what I find even more useful is that 
-Tab completion can help you out with the column names of your Data Frame:
+Tab completion can help you out even with the column names of your Data Frame:
 
 ![tab-completion](/images/tab-completion.png)
 
@@ -88,7 +88,7 @@ Here I'll only list my favourites.
 
 ### Number 7: High-resolution plots on Retina
 
-I have only recently discovered this one, and at the moment it's my favourite. 
+I have only recently discovered this one, and at the moment it's bringing me so much joy! 
 Finally, I can get high resolution plots in my notebooks instead of blurred regular outputs.
 Here's what a regular plot looks like for me: 
 
@@ -101,7 +101,7 @@ Now, let's add some magic:  `%config InlineBackend.figure_format = 'retina'`
 Looking sharp! :)
 
 That's it for now! Hope you found something useful here. 
-I'll be updating this post with new tricks when I discover them.  
+I'll be updating this post with new tricks as I discover them.  
  
  
 
