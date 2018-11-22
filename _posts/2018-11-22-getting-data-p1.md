@@ -23,7 +23,7 @@ In ideal world, reading a csv file would be as easy as:
 
 ```python
 import pandas as pd
-df = pd.read_csv(“my_data.csv”)
+df = pd.read_csv("my_data.csv")
 ```
 
 Assuming `my_data.csv` is located in your current working directory, if not, you can specify any 
@@ -45,7 +45,8 @@ the column names, so let’s fix all of that too:
 ```python
 import pandas as pd
 columns = ["id", "City", "Education", "Total population", "Men", "Women", "German citizens", "Immigrants"]
-df = pd.read_csv("12111-10-01-4_00.csv", sep=';', skiprows = 13,  skipfooter = 3, names = columns, index_col = ["id", "City", "Education"])
+df = pd.read_csv("12111-10-01-4_00.csv", sep=';', skiprows = 13,  skipfooter = 3, 
+                    names = columns, index_col = ["id", "City", "Education"])
 
 ```
  
@@ -78,7 +79,7 @@ engine object to connect to your database using the the `create_engine()` functi
 
 ```python
 from sqlalchemy import create_engine
-engine = create_engine(‘mysql+pymysql://admin:password@localhost:3030/mydatabase’)
+engine = create_engine('mysql+pymysql://admin:password@localhost:3030/mydatabase')
 ``` 
 The typical form of a database URL looks like this:
 
@@ -103,79 +104,79 @@ pd.read_sql_query('SELECT * FROM data', engine)
 
 If you're new to SQL, here's some very basics of SQL querying to get you started:
 
-```SQL
+```
 SELECT id, name, occupation FROM data;
 ```
 This will return the `id`, `name`, `occupation` columns from the `data` table.
 
-```SQL
+```
 SELECT * FROM data;
 ```
 This will return all columns from the `data` table.
 
 If you want to limit the number of rows returned, you can use the `LIMIT` keyword:
-```SQL
+```
 SELECT * FROM data LIMIT 1000;
 ```
 
 If your data contains a lot of duplicate values and you want to get only unique values from a columns, use `DISTINCT` 
 keyword:
-```SQL
+```
 SELECT DISTINCT last_name FROM data;
 ```
 
 You can also filter the results that you want to get from your database. You can use the `WHERE` keyword to do that. 
 For example, let's get only records for a particular city:  
-```SQL
+```
 SELECT * FROM data WHERE city = 'New York';
 ```
 
 If you want to use several conditions, you can use `AND` keyword:
-```SQL 
+``` 
 SELECT * FROM data WHERE city = 'New York' AND  year > 2017;
 ```
 You can add as many `AND` conditions as you need :)
 
 If you want some of the conditions met, then use `OR`: 
-```SQL
+```
 SELECT * FROM data WHERE city = 'New York' OR city = ‘Paris’;
 ```
 
 You can combine `AND` and `OR`, but be sure to enclose the individual clauses in parentheses to make sure you get 
 the results you’re expecting:
-```SQL
+```
 SELECT * FROM data WHERE (year = 2007 OR year = 2017) AND (city = 'New York’ OR city = 'Paris');
 ```
 
 To filter the data by a range of values use `BETWEEN`: 
-```SQL
+```
 SELECT * FROM data WHERE year BETWEEN 2007 AND 2017;
 ```
 Note that when using `BETWEEN`, the beginning and end values are included in the results. 
 
 You can also combine it with other conditions using `AND`/`OR`:
-```SQL 
+``` 
 SELECT * FROM data WHERE year BETWEEN 2007 AND 2017 AND city = ‘New York’;
 ```
 
 If you have many `OR` conditions, `WHERE` can get quite large. To avoid that, you can use `WHERE IN`: 
-```SQL
+```
 SELECT * FROM data WHERE year IN (1997, 2007, 2017);
 ```
 
 If you want to filter out missing (`NULL`) values, use the `IS NOT NULL`:
-```SQL
+```
 SELECT * FROM data WHERE city IS NOT NULL;
 ```
 
 If you want to filter out the data based on a pattern rather than the exact match, you can use `LIKE`: 
-```SQL
+```
 SELECT * FROM data WHERE name LIKE 'Mar%';
 ```
 The `%` will match zero to any number of characters. So this will return all rows where a name starts with Mar, e.g. Maria, Marta, Mario, etc.
 
 For a single character use `_`:
-```SQL
+```
 SELECT * FROM data WHERE name LIKE 'Mar_a';
 ```
 This will return rows with names Maria and Marta but not Mario. 
