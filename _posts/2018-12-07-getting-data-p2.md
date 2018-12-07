@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Getting data, part 2: web scraping"
-date: 2018-11-22
+title: "Getting data, part 2: web scraping and the walking dead"
+date: 2018-12-07
 ---
 
 In my previous blog post I've talked about getting data from a csv file (even if it's messed up), or a database. 
