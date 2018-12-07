@@ -129,7 +129,9 @@ By inspecting this page, we can notice that all the links to characters have a c
  
  There was one particular link that led to an obsolete page, so I ended up adding a little hack for that:
  ```python 
- wd_characters = ["https://walkingdead.fandom.com/wiki/Jeffery_(TV_Series)" if x=="https://walkingdead.fandom.com/wiki/Jeffrey_(TV_Series)" else x for x in wd_characters]
+ wd_characters = ["https://walkingdead.fandom.com/wiki/Jeffery_(TV_Series)" if x=="https://walkingdead.fandom.com/wiki/Jeffrey_(TV_Series)" 
+                      else x for x in wd_characters]
+     
 ```
 
 Now we just need to bring it all together, and write the data into a csv file as we go, so we could later analyze it. 
@@ -154,7 +156,7 @@ if __name__ == "__main__":
  This little script gives us a nice csv with the data on each character that we can now use to make a pandas dataframe and 
  have fun with:
   
-![State of the Walking Dead Characters](/images/2018-12-wd-csv-pandas.png)
+<img src="/images/2018-12-wd-csv-pandas.png" alt="State of the Walking Dead Characters" width="400"/>
 
 To do some meaningful analysis however this data still needs a lot of cleanup, but that's outside of today's tutorial scope:)
  
