@@ -71,6 +71,7 @@ If dropping rows with missing values is not an option, the alternative is to rep
 and you have a choice here what those values can be. 
 
 You can: 
+
 Check if a missing value actually means anything. E.g. in a house without a garage, a `NaN` in the field for 
 "how many cars can fit in the garage" probably means 0. In some cases a `NaN` is actually one of the categories.
 ![fillna zeros](/images/jan31-fillna-zero.png)
