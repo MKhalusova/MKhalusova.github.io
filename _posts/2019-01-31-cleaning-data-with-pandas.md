@@ -74,17 +74,13 @@ You can:
 * Check if a missing value actually means anything. E.g. in a house without a garage, a `NaN` in the field for 
 "how many cars can fit in the garage" probably means 0. In some cases a `NaN` is actually one of the categories.
 ```houses['cars_per_garage'].fillna(0, inplace=True)```
-
 * Replace NaNs with the mean or median for the numerical variables, or the most common value for categorical variables.
 ```mean_fare = titanic["Fare"].mean()
 titanic['Fare'].fillna(mean_fare, inplace=True)
 ```
-
 * If the data is ordered, it may make sense to take one of the adjacent values as a substitute, either next one or the previous.
-
 * Replace NaNs based on the other data available in your dataset. 
 ```houses["LotFrontage"] = houses.groupby("Neighborhood")["LotFrontage"].transform(lambda x: x.fillna(x.median()))```
-
 In this example we assume that the lot frontage is going to be more or less the same across a neighborhood, so 
 we fill in the missing values based on the median in a group based on a neighborhood. 
 
