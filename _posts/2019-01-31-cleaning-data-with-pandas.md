@@ -71,15 +71,16 @@ If dropping rows with missing values is not an option, the alternative is to rep
 and you have a choice here what those values can be. 
 
 You can: 
-* Check if a missing value actually means anything. E.g. in a house without a garage, a `NaN` in the field for 
+Check if a missing value actually means anything. E.g. in a house without a garage, a `NaN` in the field for 
 "how many cars can fit in the garage" probably means 0. In some cases a `NaN` is actually one of the categories.
 ![fillna zeros](/images/jan31-fillna-zero.png)
 
-* Replace NaNs with the mean or median for the numerical variables, or the most common value for categorical variables.
+Replace NaNs with the mean or median for the numerical variables, or the most common value for categorical variables.
 ![fillna mean](/images/jan31-fillna-mean.png)
 
-* If the data is ordered, it may make sense to take one of the adjacent values as a substitute, either next one or the previous.
-* Replace NaNs based on the other data available in your dataset. 
+If the data is ordered, it may make sense to take one of the adjacent values as a substitute, either next one or the previous.
+
+Replace NaNs based on the other data available in your dataset. 
 ![fillna by group](/images/jan31-lf.png)
 
 In this example we assume that the lot frontage ("LF") is going to be more or less the same across a neighborhood, so 
