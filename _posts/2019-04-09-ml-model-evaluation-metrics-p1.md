@@ -2,6 +2,7 @@
 layout: post
 title: "Machine Learning Model Evaluation Metrics part 1: Classification"
 date: 2019-04-09
+use_math: true
 ---
 
 If you're only starting your machine learning journey, you may be taking online courses, reading books on the topic, 
@@ -16,7 +17,7 @@ So to save others the time and frustration I compiled what I now know about eval
 Learning Model Evaluation Metrics" which I have recently delivered at AnacondaCON in Austin, Texas. If you prefer reading 
 blog posts over watching talks, I intend to publish a couple of blog posts on the topic, and this is the first one. 
 
-As a bonus, the blog format allows me to add more useful links. 
+As a bonus, this format allows me to add more useful links :)  
 In this first blog post, I'll focus on evaluation metrics for classification problems. And to make things a little simpler,
 I'll limit myself to binary classification problems. Later, we'll talk how metrics can be extended to a multi-class problem.  
 
@@ -25,41 +26,41 @@ Everybody who has ever build a classifier or read about building one has encount
 Classification accuracy (or simply, accuracy) is an evaluation metric that is a portion of correct predictions out of the total number of 
 predictions produced by a ML model:
 
-[ \text{Accuracy} = \frac{\text{Number of correct predictions}} {\text{Total number of predictions}}\ ]  
+$$\text{Accuracy} = \frac{\text{Number of correct predictions}} {\text{Total number of predictions}}$$   
 
 Accuracy can range from 0 to 1 (or 0 to 100%), and it is easy to intuitively understand. In scikit-learn, all 
-estimators have a score method that gives you an evaluation metric for your model, and for classifiers it is accuracy. 
+estimators have a `score` method that gives you an evaluation metric for your model, and for classifiers it is accuracy. 
 
-Here's an example where I train a basic LogisticRegression on a dataset for a binary problem. Once I did that, I can call 
+Here's an example where I train a basic `LogisticRegression` on a dataset for a binary problem. Once I did that, I can call 
 the score method on my model, pass the test data and get the accuracy of my model on the test data.
 
-[screenshot of the code]
+![Classification Accuracy](/images/metrics/accuracy.png){:width="650px"}
 
 I got almost 96%! This is amazing! Or is it? That's a trick question of course, because at this point we know too little 
 and it's impossible to say whether 96% accuracy is "good" or not. In this case, it turns out to be not that great. 
 
 To illustrate what I mean, I built a [DummyClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html) 
-on the same data. A DummyClassifier in scikit-learn is a classifier that doesn't learn anything from the data but simply 
+on the same data. A `DummyClassifier` in scikit-learn is a classifier that doesn't learn anything from the data but simply 
 follows a given strategy. It can generate predictions by respecting the training set's class distribution, or uniformly 
 at random, or, like in my case, it will always return the most frequent label in the training set. 
 
-You can use DummyClassifier in the same fashion as any other scikit-learn estimator, and like other classifiers it has
-a score method that will return its accuracy. So, drumroll please…. 
+You can use `DummyClassifier` in the same fashion as any other scikit-learn estimator, and like other classifiers it has
+a score method that will return its accuracy. So, drumroll please… 
 
-[screenshot of the code]
+![DummyClassifier](/images/metrics/dummy.png){:width="650px"}
 
-The DummyClassifier has an accuracy of 94%!  This means my LogisticRegression model was only tiny bit better than 
+The DummyClassifier has an accuracy of 94%!  This means my `LogisticRegression` model was only tiny bit better than 
 predicting the most frequent label in the training set which doesn't seem so good anymore. Why is this happening? 
 
 The reason is in the data, and I haven't shown you my data yet. For this example I used a synthetic dataset with 10 000 
 samples, where only 5% of them represent samples of the positive class, while 95% of samples are of negative class:
 
-[screenshot of the code] 
+![Make Classification](/images/metrics/make-classification.png){:width="650px"} 
 
 So  even simply predicting negative class all the time we'll get 95% accuracy. If you're wondering why I got 94% and 
 not 95% with the DummyClassifier, that would have to do with how the data got split into train and test sets. 
 
-This type of dataset is what's called a class-imbalanced dataset, and unfortunately they are quite common. If you don't 
+This type of dataset is what's called a **class-imbalanced dataset**, and unfortunately they are quite common. If you don't 
 know that you are working with a class-imbalanced data, classification accuracy can give you a false impression that 
 your model is doing great when in reality it is not. So first things first - be sure to check get to know your data!
 
