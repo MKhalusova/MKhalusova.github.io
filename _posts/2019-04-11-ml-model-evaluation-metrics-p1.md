@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "ML Model Evaluation Metrics part 1: Classification"
-date: 2019-04-10
+title: "Machine Learning Model Evaluation Metrics part 1: Classification"
+date: 2019-04-11
 use_math: true
 ---
 
