@@ -10,7 +10,7 @@ post](2019-04-11-ml-model-evaluation-metrics-p1.md) I've talked about some essen
 to a binary classification problem. 
 
 In this post, let's see how some of them can be extended to a multi-class case:
-* [What does confusion Matrix look like for a multi-class problem?](#confusion-matrix)
+* [What does confusion matrix look like for a multi-class problem?](#confusion-matrix)
 * [How are micro-, macro- and weighted-averaged metrics calculated?](#micro--macro--weighted-averaged-precision) 
 * [Log Loss for multi-class problem](#multi-class-log-loss)
 
@@ -42,7 +42,7 @@ such metrics as Precision, Recall and F1 score.
 
 For these metrics to be calculated on a multi-class problem, the problem needs to be treated as a set of binary problems 
 ("one-vs-all"). In this case a metric, for instance, Precision can be calculated per class, and then the final metric will 
-be the average of the per-class metrics. Of course, there are different ways you can average, and it does make a difference. 
+be the average of the per-class metrics. Of course, there's more than one way to average, and it does make a difference. 
 
 ![Precision score with different average strategy](/images/metrics/precision-average.png){:width="650px"}
 
