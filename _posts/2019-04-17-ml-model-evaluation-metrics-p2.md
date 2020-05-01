@@ -6,7 +6,7 @@ use_math: true
 ---
 
 Hi! Welcome back to the second part of my series on different machine learning model evaluation metrics. In the [previous 
-post](http://mkhalusova.github.io/blog/2019/04/17/ml-model-evaluation-metrics-p2) I've talked about some essential metrics that can be applied 
+post](http://mkhalusova.github.io/blog/2019/04/11/ml-model-evaluation-metrics-p1) I've talked about some essential metrics that can be applied 
 to a binary classification problem. 
 
 In this post, let's see how some of them can be extended to a multi-class case:
