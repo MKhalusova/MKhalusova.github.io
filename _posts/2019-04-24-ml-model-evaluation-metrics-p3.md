@@ -7,8 +7,8 @@ use_math: true
 
 In the final part of my series on ML model evaluation metrics we'll talk about metrics that can be applied 
 to regression problems. If you'd like to read about evaluation metrics for classification problems, check out my other 
-blog posts: [part 1: binary classification](2019-04-11-ml-model-evaluation-metrics-p1.md) and 
-[part 2: multi-class classification](2019-04-17-ml-model-evaluation-metrics-p2.md).
+blog posts: [part 1: binary classification](http://mkhalusova.github.io/blog/2019/04/11/ml-model-evaluation-metrics-p1) and 
+[part 2: multi-class classification](http://mkhalusova.github.io/blog/2019/04/17/ml-model-evaluation-metrics-p2).
 
 Here's what's on the today's menu: 
 * [R squared](#r-squared)
@@ -164,5 +164,8 @@ greater than an over-predicted estimate.
 I hope this will help you find the right metric for your next machine learning problem, or to understand why one metric 
 have been chosen in a given task or competition. Thanks for reading! 
 
+Check out more posts about evaluation metrics: 
+* Part 1: [binary classification metrics](http://mkhalusova.github.io/blog/2019/04/11/ml-model-evaluation-metrics-p1) and
+* Part 2: [multi-class classification](http://mkhalusova.github.io/blog/2019/04/17/ml-model-evaluation-metrics-p2).
 
 

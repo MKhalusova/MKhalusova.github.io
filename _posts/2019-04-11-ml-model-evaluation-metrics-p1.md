@@ -339,9 +339,11 @@ of your model are not only correct but also confident, then log loss is the metr
 
 If you made it this far - thank you! These are, of course, not the only existing evaluation metrics for classification 
 problems, there's more! But I find that these are essential to understand. 
-
-If you liked this post, stay tuned for part 2: multi-class classification, and part 3: regression metrics. 
-
+ 
+**Update**
+Check out more posts about evaluation metrics: 
+* Part 2:  [multi-class classification](http://mkhalusova.github.io/blog/2019/04/17/ml-model-evaluation-metrics-p2)
+* Part 3: [regression metrics](http://mkhalusova.github.io/blog/2019/04/17/ml-model-evaluation-metrics-p3)
 
 
 

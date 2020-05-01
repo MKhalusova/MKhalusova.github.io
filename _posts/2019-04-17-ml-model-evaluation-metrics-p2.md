@@ -6,7 +6,7 @@ use_math: true
 ---
 
 Hi! Welcome back to the second part of my series on different machine learning model evaluation metrics. In the [previous 
-post](2019-04-11-ml-model-evaluation-metrics-p1.md) I've talked about some essential metrics that can be applied 
+post](http://mkhalusova.github.io/blog/2019/04/17/ml-model-evaluation-metrics-p2) I've talked about some essential metrics that can be applied 
 to a binary classification problem. 
 
 In this post, let's see how some of them can be extended to a multi-class case:
@@ -142,6 +142,10 @@ Now, of course, if you look in how it's calculated in [scikit-learn](https://git
 you won't find `for` cycles, because vectorized operations are much faster. But to me, "spelling out" a formula like 
 this sometimes helps for it to "click" for me.
 
-Thanks for reading! Coming next, I'll talk about evaluation metrics for regression problems.  
+Thanks for reading! 
+Check out more posts about evaluation metrics: 
+* Part 1:  [binary classification metrics](http://mkhalusova.github.io/blog/2019/04/11/ml-model-evaluation-metrics-p1)
+* Part 3: [regression metrics](http://mkhalusova.github.io/blog/2019/04/17/ml-model-evaluation-metrics-p3)
+  
  
  
