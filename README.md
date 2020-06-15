@@ -1,1 +1,1 @@
-[MKhalusova.github.io](http://mkhalusova.github.io/)
+Personal blog: [MKhalusova.github.io](http://mkhalusova.github.io/)
