@@ -17,6 +17,7 @@ that helped me make it work:
 
 I've had some trouble making docker work, kept receiving an connection timeout, but managed to make it work in the [end](https://github.com/docker/for-mac/issues/1601).
 
+
 The moment it all finally came together, someone told me that jekyll is no longer hot, and I should try [HUGO](https://gohugo.io/). Sigh... Some other time. It works, I don't yet feel like messing with a running system. 
 
 
