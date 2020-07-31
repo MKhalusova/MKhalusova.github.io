@@ -18,10 +18,10 @@ title = "Hi! I'm Maria Khalusova"
 author = "Maria Khalusova"
 description = "I blog about data science and tech."
 profilePicture = "images/profile.jpg"
-#keywords = ""
-#favicon = "favicons/"
-#customCss = []
-#customJs = []
+keywords = ""
+favicon = "favicons/"
+customCss = []
+customJs = []
 mainSections = ["posts", "about", "talks"]
 #images = ["images/site-feature-image.png"]
 
