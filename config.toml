@@ -1,0 +1,80 @@
+baseURL = "https://mariakhalusova.com"
+languageCode = "en"
+DefaultContentLanguage = "en"
+title = "Maria Khalusova"
+theme = "anatole"
+summarylength = 10
+enableEmoji = true
+enableRobotsTXT = true
+
+# Enable Disqus
+#disqusShortname = ""
+
+# Google Analytics
+googleAnalytics = "UA-109526083-1"
+
+[params]
+title = "Hi! I'm Maria Khalusova"
+author = "Maria Khalusova"
+description = "I blog about data science and tech."
+profilePicture = "images/profile.jpg"
+#keywords = ""
+#favicon = "favicons/"
+#customCss = []
+#customJs = []
+mainSections = ["posts", "about", "talks"]
+#images = ["images/site-feature-image.png"]
+
+## Math settings
+[params.math]
+enable = true  # options: true, false. Enable math support globally, default: false. You can always enable math on per page.
+use = "mathjax"  # options: "katex", "mathjax". default is "katex".
+
+## Social links
+[[params.socialIcons]]
+icon = "fa-github"
+title = "GitHub"
+url = "https://github.com/mKhalusova/"
+
+[[params.socialIcons]]
+icon = "fa-twitter"
+title = "Twitter"
+url = "http://twitter.com/mariaKhalusova"
+
+[[params.socialIcons]]
+icon = "fa-linkedin"
+title = "Linkedin"
+url = "https://www.linkedin.com/in/maria-khalusova-a958aa14/"
+
+[[params.socialIcons]]
+icon = "fa-envelope"
+title = "e-mail"
+url = "mailto:kafooster@gmail.com"
+
+## Menu items
+
+[menu]
+
+[[menu.main]]
+name = "Home"
+identifier = "home"
+weight = 100
+url = "/"
+
+[[menu.main]]
+name = "Posts"
+weight = 200
+identifier = "posts"
+url = "/posts/"
+
+[[menu.main]]
+name = "About"
+weight = 300
+identifier = "about"
+url = "/about/"
+
+[[menu.main]]
+name = "Talks"
+weight = 400
+identifier = "talks"
+url = "/talks/"
