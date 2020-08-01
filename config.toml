@@ -1,8 +1,8 @@
-baseURL = "https://mariakhalusova.com"
+baseURL = "https://www.mariakhalusova.com"
 languageCode = "en"
 DefaultContentLanguage = "en"
 title = "Maria Khalusova"
-theme = "maria"
+theme = "anatole"
 summarylength = 10
 enableEmoji = true
 enableRobotsTXT = true
