@@ -21,8 +21,8 @@
     {{ with .OutputFormats.Get "rss" -}}
         {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
     {{ end -}}
-    {{ $anatole := resources.Get "js/anatole-header.js" }}
-    {{ $secureJS := $anatole |  resources.Minify | resources.Fingerprint }}
+    {{ $maria := resources.Get "js/maria-header.js" }}
+    {{ $secureJS := $maria |  resources.Minify | resources.Fingerprint }}
     <script type="text/javascript" src="{{ $secureJS.RelPermalink }}" integrity="{{ $secureJS.Data.Integrity }}" crossorigin="anonymous"></script>
     
     
@@ -49,4 +49,5 @@
 
     <!-- Twitter Cards -->
     {{ template "_internal/twitter_cards.html" . }}
+    {{ partial "mathjax_support.html" . }}
 </head>
