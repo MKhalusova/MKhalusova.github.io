@@ -156,12 +156,12 @@ a:hover, a:active {
 .content {
   height: auto;
   float: right;
-  width: 60%;
+  width: 70%;
   margin-top: 60px;
 }
 
 .page-top {
-  width: 60%;
+  width: 70%;
   position: fixed;
   right: 0;
   z-index: 3;
@@ -221,7 +221,7 @@ a:hover, a:active {
 }
 
 .sidebar {
-  width: 40%;
+  width: 30%;
   -webkit-background-size: cover;
   background-size: cover;
   background-color: var(--bg-color);
@@ -243,7 +243,7 @@ a:hover, a:active {
   margin: 0 auto;
 }
 .sidebar .logo-title .title img {
-  width: 127px;
+  width: 150px;
   border-radius: 50%;
 }
 .sidebar .logo-title .title h3 {

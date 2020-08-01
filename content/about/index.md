@@ -14,6 +14,3 @@ Devoxx, ConFoo, and many more.
 
 I'm also co-organizing [PyData Montreal](https://www.meetup.com/PyData-MTL/) - a community for like-minded data folks to learn, 
 share and network. 
-
-
-() 
