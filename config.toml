@@ -23,7 +23,7 @@ favicon = "favicons/"
 customCss = []
 customJs = []
 mainSections = ["posts", "about", "talks"]
-#images = ["images/site-feature-image.png"]
+images = ["images/site-feature-image.png"]
 
 ## Math settings
 [params.math]
