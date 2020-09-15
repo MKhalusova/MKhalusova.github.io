@@ -1,5 +1,5 @@
 ---
-date: "2020-09-16T00:00:00Z"
+date: "2020-09-15T00:00:00Z"
 title: 'Baseline Sentiment Analysis with Naive Bayes in Kotlin'
 draft: true
 ---
@@ -9,7 +9,7 @@ this can also be a good topic to cover in a blog post. So if you are familiar wi
 NLP (natural language processing) this article can help you to get started with some basic NLP. 
 
 So what will you learn from this post? I'll show you how you can implement a Naive Bayes model to classify positive vs 
-negative sentiment of tweets, I'll explain how Naive Bayes works, what is Bayes' Theorem, what kind of text preprocessing
+negative sentiment of tweets, I'll explain how Naive Bayes works, what Bayes' Theorem is, what kind of text preprocessing
  you'll need to do, and what are the limitations of this algorithm. 
 
 At the end of this blog post, you'll find a link to a GitHub repo with Naive Bayes implementation, and a working example
@@ -20,15 +20,16 @@ While classifying tweets into positive and negative may seem like a "toy project
 there are real world applications for tools that can do this task well. For instance, if your company announces 
 a product X, and thousands of people start tweeting about it, you may want to quickly get an idea of how the product 
 has been received - are most people happy about it, or not. I'm sure there are a myriad of startups that offer 
-such service :)
+such a service :)
 
 You too will be able to classify text into categories by the end of this article! 
 I'll be using Naive Bayes here, which is a simple and fast algorithm but, as the name suggests, it's a little "naive" 
-and won't catch on language structure. Still, it gives you a great baseline model, and once you understand how it works, 
+and won't catch on to language structure. Still, it gives you a great baseline model, and once you understand how it works, 
 you can apply this algorithm to many other tasks with minor modifications.
 
 ## Naive Bayes
-Generally speaking, Naive Bayes is a probabilistic classifier based on applying Bayes' Theorem. This brings a few 
+Generally speaking, [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier) is a probabilistic classifier 
+based on applying [Bayes' Theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem). This brings up a few 
 questions - what is Bayes' Theorem, what kind of probabilities are we talking about and where do we get them from?
 
 In this case, what we essentially are going to do is build a vocabulary of all words in our training data, and 
@@ -40,7 +41,7 @@ This description skips a ton of details. Let's dig into them!
 ## Bayes' Theorem
  
 Before I show you the formula, consider this example. Say, your friend has 2 coins, one of them is fair (one side is 
-a head, and the other one is a tail), and the second coin is unfair (both sides are tails). The friend picks a 
+heads, and the other one is tails), and the second coin is unfair (both sides are tails). The friend picks a 
 coin at random without you looking. If I ask you now to tell me if your friend picked an unfair coin, you won't be 
 able to give me a definitive answer - there's after all a 50-50 chance of picking either coin. Suppose your friend now 
 tosses the coin once, and you see tails. You may get a bit more confident it is an unfair coin.
@@ -68,7 +69,7 @@ However, like in this case, we often don't know $P(B)$, and for such cases, ther
 $$P(A|B) = \frac{P(B|A)*P(A)}{P(B|A)*P(A)+ P(B|notA)*P(notA)}$$ 
 
 It's outside of the scope of this article to prove why it's the same, so you can just trust me on this, or by all means 
- dig deeper and research it further :)
+ dig deeper and research it further. Here's a [great video](https://youtu.be/HZGCoVF3YvM) explaining the theorem in detail. 
  
 So now we need $P(B|notA)$ and $P(not A)$ and we can plug the numbers into the formula and get the answer. 
 * $P(B|notA)$ = probability that we'll get 10 tails if we picked a fair coin = $0.5^{10}$
@@ -97,9 +98,9 @@ in positive examples, and probability to encounter it in negative examples.
 
 So now, for a new tweet, to predict if it's positive or not, we will need to plug the numbers in the following formula:
 
-$$\frac{P(Positive Class)}{P(Negative Class)} \displaystyle\prod_{i=1}^{m} \frac{P(word_i | Positive Class)}{P(word_i | Negative Class)} $$
+$$\frac{P(\text{Positive Class})}{P(\text{Negative Class})} \displaystyle\prod_{i=1}^{m} \frac{P(\text{word}_i | \text{Positive Class})}{P(\text{word}_i | \text{Negative Class})} $$
 
-where $word_i$ is each word/token in that tweet.
+where $\text{word}_i$ is each word/token in that tweet.
 
 Once we plug the numbers, if the result is larger than 1 (positive probabilities overpower the negative ones), 
 then we can predict that the sentiment is positive, and if the result is less than 1, we can predict negative sentiment. 
@@ -110,11 +111,11 @@ Unfortunately it can happen that some of those probabilities equal to 0, then th
 we can only get a meaningful result when none of those probabilities equal to 0. How can we ensure that? 
 With a trick called Laplacian smoothing. Here's how we're going to calculate probability to encounter a word in a class: 
 
-$$P(word_i | class) =\frac{freq(word_i , class) + 1}{sum(freq) + V}$$
+$$P(\text{word}_i | \text{class}) =\frac{freq(\text{word}_i , \text{class}) + 1}{sum(\text{freq}) + V}$$
 
 Here: 
-* $freq(word_i , class)$ = how often this word is encountered in examples of this class (we have positive and negative classes)
-* $sum(freq)$ = sum of frequences for all words in the vocabulary
+* $freq(\text{word}_i , \text{class})$ = how often this word is encountered in examples of this class (we have positive and negative classes)
+* $sum(\text{freq})$ = sum of frequences for all words in the vocabulary
 * $V$ = number of unique words in the vocabulary. 
 
 By making this small adjustment, we can make sure we won't end up with probabilities equal to 0.
@@ -123,7 +124,7 @@ However, we're not done yet. There's another problem we will almost certainly fa
 corpus may be so large, that ultimately the resulting probabilities for them will be so small, they'll cause 
 arithmetic underflow. To address this problem instead of using the formula directly, we'll take logarithm:
 
-$$ ln(\frac{P(Positive Class)}{P(Negative Class)} \displaystyle\prod_{i=1}^{m} \frac{P(word_i | Positive Class)}{P(word_i | Negative Class)})  = ln(\frac{P(Positive Class)}{P(Negative Class)}) + \sum_{i=1}^m ln(\frac{P(word_i | Positive Class)}{P(word_i | Negative Class)}) $$   
+$$ ln(\frac{P(\text{Positive Class})}{P(\text{Negative Class})} \displaystyle\prod_{i=1}^{m} \frac{P( \text{word}_i | \text{Positive Class})}{P(\text{word}_i | \text{Negative Class})})  = ln(\frac{P(\text{Positive Class})}{P(\text{Negative Class})}) + \sum_{i=1}^m ln(\frac{P(\text{word}_i | \text{Positive Class})}{P(\text{word}_i | \text{Negative Class})}) $$   
 
 As a nice side effect, the result is also easier to interpret. If the result is less than 0, we predict negative class, 
 otherwise we predict positive class. And now we're done with formulas! Time to put it all together. 
@@ -160,13 +161,13 @@ I decided to get rid of the following:
 
 I found Kotlin's extension functions super useful for this task. 
 ```kotlin
-    private fun String.removeTickers() = replace(regex = Regex("\\\$\\w*"), replacement = "")
-    private fun String.removeRTs() = replace(regex = Regex("^RT[\\s]+"), replacement = "")
-    private fun String.removeURLs() = replace(regex = Regex("https?://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"), "")
+    private fun String.removeTickers() = replace(Regex("\\\$\\w*"), "")
+    private fun String.removeRTs() = replace(Regex("^RT[\\s]+"), "")
+    private fun String.removeURLs() = replace(Regex("https?://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"), "")
     private fun String.removeHashtags() = replace("#", "")
-    private fun String.removeMentions() = replace(regex = Regex("[@#][\\w_-]+"), replacement ="")
-    private fun String.removeXMLEncodings() = replace(regex = Regex("&[a-z]*;")," ")
-    private fun String.removeExtraSpaces() = replace(regex = Regex("\\s+")," ")
+    private fun String.removeMentions() = replace(Regex("[@#][\\w_-]+"), "")
+    private fun String.removeXMLEncodings() = replace(Regex("&[a-z]*;")," ")
+    private fun String.removeExtraSpaces() = replace(Regex("\\s+")," ")
 ```
 How exactly you clean the data depends on what you're working with, and will differ from task to task.
 
@@ -189,7 +190,7 @@ class Tokenizer {
         val withoutPunctuation = withoutEmojis.replace(regex = Regex("[^a-zA-Z_-]"), replacement = " ").replace(regex = Regex("\\s+")," ").trim()
 
         // splitting the string into tokens
-        val tokensWithoutEmojis: List<String> = withoutPunctuation.split(delimiters = arrayOf(" "))
+        val tokensWithoutEmojis: List<String> = withoutPunctuation.split(" ")
         val lowercaseTokens = tokensWithoutEmojis.map { it.toLowerCase() }
 
         return if (leaveEmojis) lowercaseTokens + emojisList
@@ -226,15 +227,14 @@ how often in negative.
  
 ```kotlin
     private fun buildFrequences(texts: List<List<String>>, targets:List<Int>): Map<String, Pair<Int, Int>>{
-        // X - list of tokenized tweets, targets = labels (will need to combine positive and negative tweets)
+        // texts - list of tokenized tweets, targets = labels (will need to combine positive and negative tweets)
         // frequency table of word to Pair<negative (0) count , positive (1) count>
         val frequencyTable = mutableMapOf<String, Pair<Int,Int>>()
         for ((tweet, y)  in texts.zip(targets)) {
             for (word in tweet) {
-                frequencyTable.putIfAbsent(word, Pair(0,0))
-                val counts = frequencyTable.get(word)
-                if (y == 0) frequencyTable.put(word, Pair(counts!!.first + 1, counts.second))
-                if (y == 1) frequencyTable.put(word, Pair(counts!!.first, counts.second + 1))
+                val counts = frequencyTable.getOrDefault(word, Pair(0,0))
+                if (y == 0) frequencyTable.put(word, Pair(counts.first + 1, counts.second))
+                if (y == 1) frequencyTable.put(word, Pair(counts.first, counts.second + 1))
             }
         }
         return frequencyTable
@@ -244,7 +244,7 @@ how often in negative.
 Once we have the frequencies we can calculate this part of the prediction equation for each word - $ln(\frac{P(word_i | Positive Class)}{P(word_i | Negative Class)})$
 
 ```kotlin
-private fun computeLogLambdas(freqs: Map<String, Pair<Int, Int>>): Map<String, Double> {
+    private fun computeLogLambdas(freqs: Map<String, Pair<Int, Int>>): Map<String, Double> {
         val allPositiveCounts = freqs.values.sumBy { it.second }
         val allNegativeCounts = freqs.values.sumBy {it.first}
         val vocabLength = freqs.size
@@ -264,8 +264,8 @@ private fun computeLogLambdas(freqs: Map<String, Pair<Int, Int>>): Map<String, D
 
 Now we have all pieces to train the model: 
 ```kotlin
-fun train(X: List<List<String>>, Y:List<Int>) {
-        assert(X.size == Y.size)
+    fun train(X: List<List<String>>, Y:List<Int>) {
+        require(X.size == Y.size) {"Size of X doesn't match size of Y"}
         this.vocabulary = computeLogLambdas(buildFrequences(X, Y))
         val probPos = ((Y.count { it == 1 }).toDouble()/Y.size)
         val probNeg = ((Y.count { it == 0}).toDouble()/Y.size)
@@ -275,7 +275,7 @@ fun train(X: List<List<String>>, Y:List<Int>) {
 
 To generate a prediction, we can either get the likelihood: 
 ```kotlin
-fun predictLikelihood(x: List<String>): Double {
+    fun predictLikelihood(x: List<String>): Double {
         var result = this.logPrior
         for (token in x) {
             result += this.vocabulary.getOrDefault(token, defaultValue = 0.0)
@@ -298,7 +298,7 @@ a metric. I've written a whole bunch of posts about evaluation metrics, but here
 one - accuracy. Accuracy is going to tell you the proportion of correct predictions out of all predictions. 
 ```kotlin
     fun score(xTest: List<List<String>>, yTest:List<Int>): Double {
-        assert(xTest.size == yTest.size)
+        require(xTest.size == yTest.size) {"Size of X doesn't match size of Y"}
         val yHat = mutableListOf<Int>()
         for (x in xTest) {
             yHat.add(predictLabel(x))
@@ -309,7 +309,6 @@ one - accuracy. Accuracy is going to tell you the proportion of correct predicti
         }
         return correctPredictions.toDouble()/yTest.size
     }
-
 ```
 
 This classifier should give you about 74% accuracy on the NLTK Twitter data. 
@@ -329,7 +328,8 @@ preprocessed into exactly the same list of tokens: [feel great even sleep well]
 This algorithm won't see any difference between them. It will also struggle with sarcasm and euphemisms, but, 
 to be fair, most algorithms will too. 
   
-I hope you enjoyed the post and learned a thing or two :)
+Congratulations on getting all the way to the end of this rather long article! I hope you enjoyed it and learned a thing or two :)
+If you want to tinker with the code, you can find this example [here](http://github.com/MKhalusova/kotlin-bayes). 
 
 
 
