@@ -1,7 +1,7 @@
 ---
 date: "2020-09-15T00:00:00Z"
 title: 'Baseline Sentiment Analysis with Naive Bayes in Kotlin'
-draft: true
+draft: false
 ---
 The other weekend I implemented a simple sentiment classifier for tweets in Kotlin with Naive Bayes. 
 I originally meant it as a practice exercise for me to get more comfortable with Kotlin, but then I thought that perhaps 
