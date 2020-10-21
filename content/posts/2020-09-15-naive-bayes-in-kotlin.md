@@ -138,11 +138,11 @@ two files: `positive_tweets.json` and `negative_tweets.json`. So in this case th
 There's ton of metadata in those files that I don't need, so I'll use [klaxon](https://github.com/cbeust/klaxon) to get just the "text". 
 
 ```kotlin
-fun extractTweetsFromJSON (path: String): List<String> {
-    val tweets = mutableListOf<String>()
-    val parser = Parser()
-    File(path).forEachLine { line -> tweets.add((parser.parse(StringBuilder(line)) as JsonObject).string("text").toString()) }
-    return Collections.unmodifiableList(tweets)
+fun extractTweetsFromJSON(path: String): List<String> {
+    val parser = Parser.default()
+    return File(path).useLines { lines ->
+        lines.map { (parser.parse(StringBuilder(it)) as JsonObject).string("text") ?: "null" }.toList()
+    }
 }
 ```
 
@@ -178,25 +178,26 @@ predictors of the sentiment. In this case, however, the data has been collected 
 cheating, and won't give me trustworthy results. 
 
 ```kotlin
-class Tokenizer {
-    val emojisRegex = Regex("(?:[<>]?[:;=8][\\-o*']?[)\\](\\[dDpP/:}{@|\\\\]|[)\\](\\[dDpP/:}{@|\\\\][\\-o*']?[:;=8][<>]?|<3)")
+object Tokenizer {
+    private val emojisRegex =
+        Regex("""(?:[<>]?[:;=8][\-o*']?[)\](\[dDpP/:}{@|\\]|[)\](\[dDpP/:}{@|\\][\-o*']?[:;=8][<>]?|<3)""")
 
     fun tokenize(string: String, leaveEmojis: Boolean): List<String> {
+        // extract emojis into separate list
         val emojiMatches = emojisRegex.findAll(string)
         val emojisList = emojiMatches.map { it.value }.toList()
         val withoutEmojis = string.replace(regex = emojisRegex, replacement = "")
 
         // dropping leftover punctuation and numbers, removing extra white spaces
-        val withoutPunctuation = withoutEmojis.replace(regex = Regex("[^a-zA-Z_-]"), replacement = " ").replace(regex = Regex("\\s+")," ").trim()
+        val withoutPunctuation = withoutEmojis.replace(Regex("[^a-zA-Z_-]"), " ").replace(Regex("\\s+"), " ").trim()
 
         // splitting the string into tokens
         val tokensWithoutEmojis: List<String> = withoutPunctuation.split(" ")
+
         val lowercaseTokens = tokensWithoutEmojis.map { it.toLowerCase() }
 
-        return if (leaveEmojis) lowercaseTokens + emojisList
-        else lowercaseTokens
+        return if (leaveEmojis) lowercaseTokens + emojisList else lowercaseTokens
     }
-
 }
 ```
 
@@ -226,18 +227,15 @@ negative counts. When done, we'll know how often every word in the vocabulary is
 how often in negative.     
  
 ```kotlin
-    private fun buildFrequences(texts: List<List<String>>, targets:List<Int>): Map<String, Pair<Int, Int>>{
+    private fun buildFrequencies(texts: List<List<String>>, targets: List<Int>): Map<String, Pair<Int, Int>> {
         // texts - list of tokenized tweets, targets = labels (will need to combine positive and negative tweets)
         // frequency table of word to Pair<negative (0) count , positive (1) count>
-        val frequencyTable = mutableMapOf<String, Pair<Int,Int>>()
-        for ((tweet, y)  in texts.zip(targets)) {
-            for (word in tweet) {
-                val counts = frequencyTable.getOrDefault(word, Pair(0,0))
-                if (y == 0) frequencyTable.put(word, Pair(counts.first + 1, counts.second))
-                if (y == 1) frequencyTable.put(word, Pair(counts.first, counts.second + 1))
-            }
+        val (negativeTweets, positiveTweets) = texts.zip(targets).partition { it.second == 0 }
+        val negativeSet = negativeTweets.flatMap { it.first }.toMultiset()
+        val positiveSet = positiveTweets.flatMap { it.first }.toMultiset()
+        return (negativeSet.elementSet() + positiveSet.elementSet()).associateWith { word ->
+            Pair(negativeSet.count(word), positiveSet.count(word))
         }
-        return frequencyTable
     }
 ```
 
@@ -246,68 +244,49 @@ Once we have the frequencies we can calculate this part of the prediction equati
 ```kotlin
     private fun computeLogLambdas(freqs: Map<String, Pair<Int, Int>>): Map<String, Double> {
         val allPositiveCounts = freqs.values.sumBy { it.second }
-        val allNegativeCounts = freqs.values.sumBy {it.first}
+        val allNegativeCounts = freqs.values.sumBy { it.first }
         val vocabLength = freqs.size
-
-        val logLamdas = mutableMapOf<String, Double>()
-
-        for (word in freqs.keys) {
-            // counting probabilities with Laplacian smoothing to avoid 0s
-            val posProb = ((freqs.getValue(word).second + 1).toDouble() / (allPositiveCounts + vocabLength))
-            val negProb = ((freqs.getValue(word).first + 1).toDouble() / (allNegativeCounts + vocabLength))
-            val logLambda = ln(posProb/negProb)
-            logLamdas[word] = logLambda
+    
+        return freqs.keys.associateWith { word ->
+            val (negative, positive) = freqs.getValue(word)
+            val posProb = (positive + 1.0) / (allPositiveCounts + vocabLength)
+            val negProb = (negative + 1.0) / (allNegativeCounts + vocabLength)
+            ln(posProb / negProb)
         }
-        return logLamdas
     }
 ```
 
 Now we have all pieces to train the model: 
 ```kotlin
-    fun train(X: List<List<String>>, Y:List<Int>) {
-        require(X.size == Y.size) {"Size of X doesn't match size of Y"}
-        this.vocabulary = computeLogLambdas(buildFrequences(X, Y))
-        val probPos = ((Y.count { it == 1 }).toDouble()/Y.size)
-        val probNeg = ((Y.count { it == 0}).toDouble()/Y.size)
-        this.logPrior = ln(probPos/probNeg)
+    fun train(X: List<List<String>>, Y: List<Int>) {
+        require(X.size == Y.size) { "Size of X doesn't match size of Y" }
+        vocabulary = computeLogLambdas(buildFrequencies(X, Y))
+        val positiveCount = Y.count { it == 1 }
+        val negativeCount = Y.count { it == 0 }
+        logPrior = ln(positiveCount.toDouble() / negativeCount)
     }
 ```
 
 To generate a prediction, we can either get the likelihood: 
 ```kotlin
-    fun predictLikelihood(x: List<String>): Double {
-        var result = this.logPrior
-        for (token in x) {
-            result += this.vocabulary.getOrDefault(token, defaultValue = 0.0)
-        }
-
-        return result
-    }
+    fun predictLikelihood(x: List<String>): Double =
+        logPrior + x.sumByDouble { vocabulary.getOrDefault(it, defaultValue = 0.0) }
 ```
 
 Or we can return the label: 
 ```kotlin
-    fun predictLabel(x: List<String>): Int {
-        return if (this.predictLikelihood(x) >= 0) 1
-        else 0
-    }
+    fun predictLabel(x: List<String>): Int = if (predictLikelihood(x) >= 0) 1 else 0
 ```
 
 Finally, it's helpful to know how the classifier will behave on unseen data, and to evaluate that, you're going to need 
 a metric. I've written a whole bunch of posts about evaluation metrics, but here I've just implemented the most basic 
 one - accuracy. Accuracy is going to tell you the proportion of correct predictions out of all predictions. 
 ```kotlin
-    fun score(xTest: List<List<String>>, yTest:List<Int>): Double {
-        require(xTest.size == yTest.size) {"Size of X doesn't match size of Y"}
-        val yHat = mutableListOf<Int>()
-        for (x in xTest) {
-            yHat.add(predictLabel(x))
-        }
-        var correctPredictions = 0
-        for ((y1, y2) in yHat.zip(yTest)) {
-            if (y1 == y2) correctPredictions +=1
-        }
-        return correctPredictions.toDouble()/yTest.size
+    fun score(xTest: List<List<String>>, yTest: List<Int>): Double {
+        require(xTest.size == yTest.size) { "Size of X doesn't match size of Y" }
+        val yHat = xTest.map(::predictLabel)
+        val correctPredictions = yHat.zip(yTest).count { (y1, y2) -> y1 == y2 }
+        return correctPredictions.toDouble() / yTest.size
     }
 ```
 
