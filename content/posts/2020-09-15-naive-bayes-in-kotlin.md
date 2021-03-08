@@ -127,7 +127,8 @@ arithmetic underflow. To address this problem instead of using the formula direc
 $$ ln(\frac{P(\text{Positive Class})}{P(\text{Negative Class})} \displaystyle\prod_{i=1}^{m} \frac{P( \text{word}_i | \text{Positive Class})}{P(\text{word}_i | \text{Negative Class})})  = ln(\frac{P(\text{Positive Class})}{P(\text{Negative Class})}) + \sum_{i=1}^m ln(\frac{P(\text{word}_i | \text{Positive Class})}{P(\text{word}_i | \text{Negative Class})}) $$   
 
 As a nice side effect, the result is also easier to interpret. If the result is less than 0, we predict negative class, 
-otherwise we predict positive class. And now we're done with formulas! Time to put it all together. 
+otherwise we predict positive class. And now we're done with formulas! Time to put it all together.
+
 
 ## Putting it all together
 
