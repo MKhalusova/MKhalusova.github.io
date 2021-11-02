@@ -5,8 +5,7 @@ date: "2020-07-31"
  
 Hi! I'm Maria Khalusova and in this blog I write about data science topics, and general tech. 
 
-I'm a Product Manager/Developer Advocate at JetBrains where I have been working since 2006 and participated in a ton of projects 
-including IntelliJ IDEA, TeamCity, PyCharm and Kotlin projects. My recent focus has been on Data Science/Data Engineering tooling and languages.
+I'm a Senior Developer Advocate at Iterative.ai where I work on bringing the best practices from traditional software development such as version control and CI/CD to ML world. Previously I have worked at JetBrains where I participated in many projects including IntelliJ IDEA, TeamCity, PyCharm and Kotlin. 
 
 I'm constantly learning new things around working with data, and I love sharing my knowledge with the community. That's why 
 over the years I have presented at a bunch of industry events like JavaZone, PyData, PyCon Canada, AnacondaCON, DataconLA, 
