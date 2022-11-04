@@ -42,6 +42,11 @@ title = "Twitter"
 url = "http://twitter.com/mariaKhalusova"
 
 [[params.socialIcons]]
+icon = "fa-mastodon"
+title = "Mastodon"
+url = "https://recsys.social/web/@maria"
+
+[[params.socialIcons]]
 icon = "fa-linkedin"
 title = "Linkedin"
 url = "https://www.linkedin.com/in/maria-khalusova-a958aa14/"
